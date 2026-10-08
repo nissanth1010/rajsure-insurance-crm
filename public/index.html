@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="RajSure Insurance CRM" />
+  <title>RajSure Insurance CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div id="toast-root"></div>
+
+  <section id="auth-screen" class="auth-shell">
+    <div class="auth-card">
+      <div class="brand-mark">R</div>
+      <div class="eyebrow">RAJSURE INSURANCE</div>
+      <h1 id="auth-title">Welcome back</h1>
+      <p id="auth-subtitle">Secure CRM access for the RajSure team.</p>
+
+      <div class="notice hidden" id="backend-notice"></div>
+      <div class="notice success hidden" id="setup-notice">First setup: create the RajSure administrator account. After the first admin is created, disable public signup in Supabase Authentication settings.</div>
+
+      <form id="auth-form" class="form-stack" data-mode="login">
+        <label id="name-field" class="hidden">Full name<input id="auth-name" autocomplete="name" /></label>
+        <label>Email<input id="auth-email" type="email" autocomplete="username" required /></label>
+        <label>Password<input id="auth-password" type="password" autocomplete="current-password" minlength="8" required /></label>
+        <label id="phone-field" class="hidden">Phone<input id="auth-phone" autocomplete="tel" /></label>
+        <button class="btn primary full" type="submit" id="auth-submit">Sign in</button>
+      </form>
+      <button class="link-button" id="auth-toggle">First-time setup</button>
+      <div class="auth-foot">RajSure • Dream. Design. Develop.</div>
+    </div>
+  </section>
+
+  <section id="app-shell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <div class="brand-mark small">R</div>
+        <div><strong>RajSure</strong><span>Insurance CRM</span></div>
+      </div>
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span>Dashboard</button>
+        <button class="nav-item" data-view="customers"><span>◉</span>Customers</button>
+        <button class="nav-item" data-view="leads"><span>↗</span>Leads</button>
+        <button class="nav-item" data-view="policies"><span>▤</span>Policies</button>
+        <button class="nav-item" data-view="followups"><span>◷</span>Follow-ups</button>
+        <button class="nav-item" data-view="documents"><span>□</span>Documents</button>
+        <button class="nav-item" data-view="ai"><span>✦</span>AI Extract</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-mini"><div id="user-avatar" class="avatar">R</div><div><strong id="user-name">RajSure User</strong><small id="user-role">staff</small></div></div>
+        <button class="nav-item" id="signout"><span>↪</span>Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="mobile-menu" aria-label="Open menu">☰</button>
+        <div><div class="eyebrow" id="page-kicker">RAJSURE CRM</div><h2 id="page-title">Dashboard</h2></div>
+        <div class="top-actions"><span class="status-pill" id="system-status">Connecting…</span><div class="avatar top" id="top-avatar">R</div></div>
+      </header>
+
+      <div class="content" id="content">
+        <section class="view" id="view-dashboard"></section>
+        <section class="view hidden" id="view-customers"></section>
+        <section class="view hidden" id="view-leads"></section>
+        <section class="view hidden" id="view-policies"></section>
+        <section class="view hidden" id="view-followups"></section>
+        <section class="view hidden" id="view-documents"></section>
+        <section class="view hidden" id="view-ai"></section>
+        <section class="view hidden" id="view-settings"></section>
+      </div>
+    </main>
+  </section>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop">
+    <div class="modal" id="modal"></div>
+  </div>
+</body>
+</html>
